@@ -8,7 +8,6 @@
 
 var markers_array  = [];
 var map;
-
  jQuery.fn.extend({
     ckMap: function (settings) {
         settings = jQuery.extend({
@@ -19,70 +18,66 @@ var map;
 			elements : [],			
 			parent: this
         }, settings);
-        jQuery.fn.ckMap.settings = ccplJs.s = settings;
+        jQuery.fn.ckMap.settings = ckJS.s = settings;
 
         //to make the div empty
         jQuery(this).html("");
 
         //create the spreadsheet
-        ccplJs.mapControlFunction.addMap();      
-        ccplJs.mapControlFunction.addMarkers(); 
-		ccplJs.mapControlFunction.addPolyLine();
-        ccplJs.mapControlFunction.centerTheMap();
+        ckJS.mapControlFunction.addMap();      
+        ckJS.mapControlFunction.addMarkers(); 
+		ckJS.mapControlFunction.addPolyLine();
+        ckJS.mapControlFunction.centerTheMap();
 		
         return false;
     }
 });
-var ccplJs = jQuery.ckMap = {
+var ckJS = jQuery.ckMap = {
     version: "1.0.0",
 	obj: {
-        parent: function () { return jQuery(ccplJs.s.parent); },
+        parent: function () { return jQuery(ckJS.s.parent); },
 	},
-    mapControlFunction:
-    {
+    mapControlFunction: {
         addMap: function () {
-			//alert(ccplJs.obj.parent().attr('id'));
+			//alert(ckJS.obj.parent().attr('id'));
 			var latlng = new google.maps.LatLng(26.90, 75.80);
             var maptype;
-            //alert(ccplJs.s.type.toUpperCase());
-
-            if(ccplJs.s.type.toUpperCase() == "ROADMAP")
+            if(ckJS.s.type.toUpperCase() == "ROADMAP")
                 maptype = google.maps.MapTypeId.ROADMAP;
-            else if(ccplJs.s.type.toUpperCase() == "HYBRID")
+            else if(ckJS.s.type.toUpperCase() == "HYBRID")
                 maptype = google.maps.MapTypeId.TERRAIN;
 
 			var myOptions = {
-			  zoom: ccplJs.s.zoom,
-			  center: new google.maps.LatLng(ccplJs.s.center),
+			  zoom: ckJS.s.zoom,
+			  center: new google.maps.LatLng(ckJS.s.center),
 			  mapTypeId: maptype
-			};
-			//var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);		
-			map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+			};	
+			map = new google.maps.Map(document.getElementById(ckJS.obj.parent().attr('id')), myOptions);
         },
 		addMarkers: function() {
-			$.each(ccplJs.s.elements,function(i,dt) {
-				//alert(ccplJs.s.elements[i].latlong);	  
+			$.each(ckJS.s.elements,function(i,dt) {
+				//alert(ckJS.s.elements[i].latlong);	  
 				
-				if(ccplJs.s.elements[i].imgUrl == "" )
+				if(ckJS.s.elements[i].imgUrl == "" )
 				{
 					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(ccplJs.s.elements[i].lat,ccplJs.s.elements[i].lng),
+						position: new google.maps.LatLng(ckJS.s.elements[i].lat,ckJS.s.elements[i].lng),
 						map:map,
-						title:ccplJs.s.elements[i].name	
+						title:ckJS.s.elements[i].name	
 					});		
 				}
 				else
 				{
 					var marker = new google.maps.Marker({
-						position: new google.maps.LatLng(ccplJs.s.elements[i].lat,ccplJs.s.elements[i].lng),
+						position: new google.maps.LatLng(ckJS.s.elements[i].lat,ckJS.s.elements[i].lng),
 						map:map,
-						title:ccplJs.s.elements[i].name,	
-						icon :ccplJs.s.elements[i].imgUrl
+						title:ckJS.s.elements[i].name,	
+						icon :ckJS.s.elements[i].imgUrl
 					});		
 				}				
 				
 				var info = new google.maps.InfoWindow({
-					content: ccplJs.s.elements[i].content
+					content: ckJS.s.elements[i].content
 				});
 				
 				info.open(map,marker);
@@ -91,19 +86,19 @@ var ccplJs = jQuery.ckMap = {
 				});
 				
 				//marker.setMap(map);
-				marker.id = ccplJs.s.elements[i].id;
+				marker.id = ckJS.s.elements[i].id;
 				markers_array.push(marker);				
 			});			
 	    },
 		addPolyLine : function () {
 			//alert("Add polyline is called");                       
-            for(var i=0; i < ccplJs.s.elements.length;i++)
+            for(var i=0; i < ckJS.s.elements.length;i++)
             {			    
-                var m1 = ccplJs.mapControlFunction.getMarkerById(ccplJs.s.elements[i].id);
-                for(var j=0; j < ccplJs.s.elements[i].connect.length;j++)
+                var m1 = ckJS.mapControlFunction.getMarkerById(ckJS.s.elements[i].id);
+                for(var j=0; j < ckJS.s.elements[i].connect.length;j++)
                 {                    
-                    //alert(ccplJs.s.elements[i].connect[j]);
-				    var m2 = ccplJs.mapControlFunction.getMarkerById(ccplJs.s.elements[i].connect[j]);
+                    //alert(ckJS.s.elements[i].connect[j]);
+				    var m2 = ckJS.mapControlFunction.getMarkerById(ckJS.s.elements[i].connect[j]);
 				    var polyline = new google.maps.Polyline({
 					    path : [m1.getPosition(), m2.getPosition()]
 				    });
