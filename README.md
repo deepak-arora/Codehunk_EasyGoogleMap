@@ -1,4 +1,4 @@
-# [Codehunk_EasyGoogleMap v1.0]
+Codehunk_EasyGoogleMap v1.0
 
 
 What is it?
