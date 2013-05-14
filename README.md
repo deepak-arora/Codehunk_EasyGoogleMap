@@ -1,2 +1,2 @@
-Codehunk_EasyGoogleMap
-======================
+EasyGoogleMap ( Codehunk.com )
+=============================
