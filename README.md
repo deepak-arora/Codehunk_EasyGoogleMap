@@ -21,7 +21,7 @@ Contact
 -------
 
 If you want any query regaring this plugin, you may contact on this mail id.
-aroradeepak.mca@gmail.com
+darora85@live.com
 
 How to use
 ----------
