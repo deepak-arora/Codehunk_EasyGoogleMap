@@ -11,7 +11,8 @@ The Google Map plugin is a useful plugin for a web application. Where you want t
 The Latest Version
 -------------------
 
-Details of the latest version can be found on the http://codinghub.blogspot.com
+Latest version of this plugin is 1.0 Please visit. http://www.codehunk.com
+
 
 Contact
 -------
@@ -21,7 +22,10 @@ aroradeepak.mca@gmail.com
 
 How to use
 ----------
-The most attractive feature of this plugin is that it is very handy to use. You just have to create an array containg the information of your device, content that you want to display in device popup and connection of the device. Then call the method with ccplMap with the with your selector element where you want to show the map.
+
+We assume that you have a container on your page where you want to show map. In this example this element has the id map_canvas. You can take it as you want. You just need to call the ckMap function on that element.
+
+The most attractive feature of this plugin is that it is very handy to use. You just have to create an array containg the information of your device, content that you want to display in device popup and connection of the device. Then call the method with ckMap with the with your selector element where you want to show the map.
 
 eg:
 
@@ -43,8 +47,13 @@ var elementsarr =
   } 
 ];
     
-    $("#map_canvas").ccplMap({
+    $("#map_canvas").ckMap({
 	    title: "testing",
 	    type: "ROADMAP",	       
 		elements : elementsarr  
 	});
+	
+	
+That's it.
+
+If you face any problem in using this. Add your comments or mail me at darora85@live.com. I will be happy to help you.
